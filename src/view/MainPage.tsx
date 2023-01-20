@@ -20,7 +20,7 @@ export const MainPage = defineComponent({
         const provinceIndex = ref(0);
         const controls = ref<OrbitControls>();
         const raycaster = new THREE.Raycaster();
-        let selectedObject =new THREE.Mesh();
+        let selectedObject:any ;
         const mouse = new THREE.Vector2();
         const initRender = () => {
             renderer.value = new THREE.WebGLRenderer({ antialias: true });
