@@ -56,7 +56,7 @@ export const MainPage = defineComponent({
                 shape.lineTo(x, -y);
             });
             const geometry = new THREE.ExtrudeGeometry(shape, {
-                depth: 10,
+                depth:100,
                 bevelEnabled: false
             });
             const material = new THREE.MeshBasicMaterial({
@@ -92,8 +92,8 @@ export const MainPage = defineComponent({
             MapDate.forEach((feature) => {
                 //省份
                 const province = new THREE.Object3D();
-               // province.properties = feature.properties.name;
-                province.name = `chinaMap${provinceIndex}`;
+                province.name = feature.properties.name;
+               // province.name = `chinaMap${provinceIndex}`;
                 const coordinates = feature.geometry.coordinates;
                 if (feature.geometry.type === `MultiPolygon`) {
 
@@ -197,7 +197,8 @@ export const MainPage = defineComponent({
         const mapClick = () => {
             if (selectedObject) {
                 
-                let selectprovinceName = selectedObject.parent.properties;
+                let selectprovinceName = selectedObject.parent.name;
+                console.log(selectprovinceName);
                 title.value!.innerText = selectprovinceName;
                 getepidemicInfo(selectprovinceName).then((covidInfo: any) => {
 
@@ -249,9 +250,9 @@ export const MainPage = defineComponent({
             window.onresize = onWindowResize;
         });
         return () => (
-            <div class={s.mainPage} ref={title}>
+            <div class={s.mainPage} >
                 <header>
-                    <h1>城市名</h1>
+                    <h1 ref={title}>城市名</h1>
                 </header>
                 <main ref={showMain}>
 
