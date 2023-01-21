@@ -211,7 +211,7 @@ export const MainPage = defineComponent({
         
         const initMap = () => {
             const loader = new THREE.FileLoader();
-            loader.load('../../public/model/china.json', (data: any) => {
+            loader.load('model/china.json', (data: any) => {
                 const MapStr = JSON.parse(data);
                
                 const MapDate = MapStr.features;
